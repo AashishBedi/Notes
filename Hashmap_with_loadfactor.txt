@@ -1,0 +1,69 @@
+class MapNode:
+    def __init__(self,key,value):
+        self.key = key
+        self.value = value
+        self.next = None
+        
+class Map:
+    def __init__(self):
+        self.bucketsize = 10
+        self.bucket = [None for i in range(self.bucketsize)]
+        self.count = 0
+        
+    def size(self):
+        return self.count
+    
+    def getindex(self, hc):
+        return (abs(hc)%self.bucketsize)
+    
+    def rehash(self):
+        temp = self.bucket
+        self.bucket = [None for i in range(self.bucketsize*2)]
+        for head in temp:
+            while head is not None:
+                self.insert(head.key, head.value)
+                head = head.next
+    
+    def insert(self, key, value):
+        hc = hash(key)
+        index = self.getindex(hc)
+        head = self.bucket[index]
+        while head is not None:
+            if head.key == key:
+                head.value = value
+                return
+            head = head.next
+        newNode = MapNode(key,value)
+        newNode.next = head
+        self.bucket[index] = newNode
+        self.count += 1
+        loadfactor = self.count/self.bucketsize
+        if loadfactor >= 0.75:
+            self.rehash()
+        
+    def getvalue(self, key):
+        hc = hash(key)
+        index = self.getindex(hc)
+        head = self.bucket[index]
+        while head is not None:
+            if head.key == key:
+                return head.value
+            head = head.next
+        return None
+    
+    def remove(self,key):
+        hc = hash(key)
+        index = self.getindex(hc)
+        head = self.bucket[index]
+        prev = None
+        while head is not None:
+            if head.key == key:
+                if prev is None:
+                    self.bucket[index] = head.next
+                else:
+                    prev.next = heaad.next
+                self.count -= 1
+                return head.value
+            prev = head
+            head = head.next
+        return None
