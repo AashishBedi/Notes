@@ -1,0 +1,51 @@
+CREATE DATABASE UNI;
+USE uni;
+CREATE TABLE stu(
+roll INT PRIMARY KEY,
+name VARCHAR(50),
+grade VARCHAR(5),
+marks INT
+);
+
+CREATE TABLE dept(
+id INT PRIMARY KEY,
+name VARCHAR(50)
+);
+
+CREATE TABLE teacher(
+id INT PRIMARY KEY,
+name VARCHAR(50),
+dept_id INT,
+FOREIGN KEY (dept_id) REFERENCES dept(id)
+ON UPDATE CASCADE
+ON DELETE CASCADE
+);
+
+INSERT INTO stu VALUES(1,"Aashish","A",70);
+INSERT INTO stu VALUES(5,"Sham","C",49);
+INSERT INTO stu VALUES(2,"Ram","F",12);
+INSERT INTO stu VALUES(3,"Krish","B",55);
+INSERT INTO stu VALUES(4,"Aashima","C",48);
+INSERT INTO stu VALUES(6,"Aman","A",77);
+
+SET SQL_SAFE_UPDATES = 0;
+
+SELECT * FROM stu; 
+
+UPDATE stu 
+SET grade = "O"
+WHERE grade = "A";
+
+SELECT * FROM stu;
+
+DELETE FROM stu
+WHERE marks<40;
+
+
+
+
+
+
+
+
+DROP TABLE stu;
