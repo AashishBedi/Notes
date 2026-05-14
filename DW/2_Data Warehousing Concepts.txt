@@ -1,0 +1,68 @@
+DW Architecture:
+There are 2 ways to design a DW.
+1. Top-down approach:
+In this data from external sources goes to ETL(Staging Area) then goes to DW and lastly proceeds to Data Mining.
+In DW data is divided into Data Mart.
+
+2. Bottom-up approach:
+In this data from external sources goes to ETL(Staging Area) then gets divided into DataMart and then goes to DW and lastly proceeds to Data Mining.
+
+
+Data is like Suppliers.
+DW is like a wholesaler.
+DataMart(DM) is like a Retailer.
+
+Q. Dependant vs Independent  data mart.
+-> Sourced from DW                 | Sourced directly from applications and systems.
+-> Uniform data across marts       | Little or no uniformity across marts.
+-> Architecturally straightforward |"Spaghetti" architecture.
+
+Main difference between above two is DW have many sources whereas other may have one source.
+
+
+Q. Decide which DW Architecture we need.
+-> Centralized:                                                           |   Component-Based:        
+          EDW                       | Data Lake                           | Architected                               | Non Architectured
+Relational | Specialized Database   | Specialized Database | Hadoop | AWS |DW+DM                    | DM only         | Federated EDW
+                                                                          |Dep. DM | Indep. DM      | DW Bus          
+
+Q. What is Cube?
+-> Cube is MDBMS(Multidimensional Database Management System)
+-> Best for small scale DWs, DM
+-> Less flexible than RDBMS
+
+Q. ODS(Operational Data Store).
+-> By using ODS. We have:
+Data Sources->ETL->ODS
+ODS feed on real time data and focuses on current operations.
+ODS components are within Data Lake today.
+
+
+Staging Layer have table have layout options.
+-> many to 1                                        |   1 to 1  
+Multiple instances of identical source applications | Multiple customized instances of source applications
+Uniform data across marts                           | Different vendor applications for same function
+
+
+Q. Types of staging layer.(QA- Quality Assurance)
+1. Non persistent layer
+Advantages:
+-> Less storage space
+-> Data already moved to user layer
+Disadvantages:
+-> Need to go back to user systems to rebuild user layer
+-> Data QA also requires source systems
+
+2. Persistent layer
+Advantages:
+-> Rebuild user layer without source systems
+-> Data QA: compare staging layer with user layer
+Disadvantages:
+-> More storage space
+-> Risk of "ungoverned" access
+
+
+#We have an assignment also for this in which we have to insert DataMart in 2 scenarios.
+We will be having University Data Warehouse there  are 4 campuses on 1 university.
+Scenario 1: Each campus maintains it's record only
+Scenario 2: One campus is the main branch and it is maintaing records of all campuses

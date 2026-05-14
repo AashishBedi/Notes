@@ -1,0 +1,27 @@
+ETL design is composed of:
+ETL architecture, Dimension & Fact table, SCD, Star & Snowflake Schemas
+
+
+ETL best practise and guidelines:
+Limit amount of incoming data to be processed in ETL
+process dimension table before fact table
+opportunities for parallel processing
+
+ETL is tough for snowflake schema
+
+Dimension Table Incremental ETL:
+1. data preparation
+[to prepare data we need change data capture techniques
+I. Transactional data timestamps
+ii. Database logs
+iii. last resort: database scan and compare]
+2.data transformation
+[data value unification
+data type and size unification
+de-duplication
+dropping columns
+value-based row filtering
+correcting known errors]
+3. Process new dimension rows
+4. process SCD type 1 changes
+5. process SCD type 2 changes

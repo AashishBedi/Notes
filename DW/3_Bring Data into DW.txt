@@ -1,0 +1,90 @@
+Q. Difference between ETL & ELT?
+ETL (Extract, Transform, Load) and ELT (Extract, Load, Transform) are two different data integration methods used in data warehousing and analytics. They both involve moving data from source systems to a target data warehouse or data lake, but the order and location of the transformation process differ significantly.
+
+### ETL (Extract, Transform, Load)
+
+1. **Extract**: Data is extracted from various source systems, which can include databases, flat files, APIs, and other data sources.
+2. **Transform**: The extracted data is then transformed in a staging area. This transformation process can include data cleansing, enrichment, normalization, aggregation, and applying business rules.
+3. **Load**: The transformed data is loaded into the target data warehouse or data mart for querying and analysis.
+
+**Characteristics of ETL:**
+- **Pre-processing**: Data is transformed before being loaded into the data warehouse.
+- **Performance**: Suitable for environments where data needs to be processed before analysis.
+- **Complexity**: Can handle complex transformations.
+- **Use Case**: Commonly used in traditional data warehousing solutions.
+
+### ELT (Extract, Load, Transform)
+
+1. **Extract**: Data is extracted from various source systems.
+2. **Load**: The extracted raw data is loaded directly into the target data warehouse or data lake.
+3. **Transform**: Data transformations are performed within the data warehouse itself, leveraging the computing power of the data warehouse or data lake platform.
+
+**Characteristics of ELT:**
+- **Post-processing**: Data is transformed after being loaded into the data warehouse.
+- **Performance**: Suitable for large datasets and modern data warehousing solutions where the data warehouse can efficiently handle transformations.
+- **Scalability**: Can leverage the scalability of modern data platforms.
+- **Use Case**: Often used with big data environment like HDFS and cloud-based data warehouses and data lakes, such as Google BigQuery, Amazon Redshift, and Snowflake.
+
+### Key Differences
+
+1. **Order of Operations**:
+   - **ETL**: Transformations occur before loading the data into the target system.
+   - **ELT**: Transformations occur after loading the data into the target system.
+
+2. **Processing Location**:
+   - **ETL**: Data transformation happens in a separate staging area or an ETL tool.
+   - **ELT**: Data transformation happens within the target data warehouse or data lake.
+
+3. **Performance and Scalability**:
+   - **ETL**: May have performance limitations due to the need to transform data before loading.
+   - **ELT**: Takes advantage of the scalable computing power of modern data warehouses to perform transformations.
+
+4. **Use Cases**:
+   - **ETL**: Traditional data warehouses, on-premises solutions, situations requiring complex data transformations before loading.
+   - **ELT**: Modern cloud-based data warehouses and data lakes, scenarios where rapid ingestion of large volumes of raw data is needed, and transformations can be handled post-loading.
+
+5. **Complexity**:
+   - **ETL**: Can be more complex due to the need for a dedicated ETL process and infrastructure.
+   - **ELT**: Simplifies the initial loading process but may require advanced SQL skills for in-warehouse transformations.
+
+If one is building traditional DW with cubes, EDBMS and no big data tech then one is stick with ETL paradigm.
+If with data lakes or DW-lake Hybrid then ELT paradigm.
+
+
+Q. Types of ETL.
+1. Initial
+- all relevant data necessary for BI and analytics
+- Redo if DW blows up
+- Normally one time only
+- Right before DW goes live
+
+
+
+Q. What to bring into DW?
+-> Data definitely needed for BI and analytics.
+-> Data probably needed for BI and analytics.
+-> Historical data
+When initial ETL is complete we are ready to go. We still need to update DW then comes Incremental ETL in.
+
+2. Incremental
+- Incrementally "refreshes" the DW to update it
+- New data and modified data
+- Special handling for deleted data
+
+Four major incremental ETL patterns:
+- Append
+- In-place update
+- Complete Replacement
+- Rolling append
+
+Q. Role of transform in ETL.
+-> Uniformity
+-> Restructuring
+
+Common transformation models:
+- Data value verification
+- Data type and size unification
+- De-duplication
+- Dropping columns(vertical slicing)
+- Value-based row filtering(horizontal slicing)
+- Correcting known errors

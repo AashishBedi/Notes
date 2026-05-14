@@ -1,0 +1,43 @@
+DATA WAREHOUSING:
+1. Data Lakes
+2. Data Virtualization
+
+Database(DB) != Data Warehouse(DW). 
+Because DW is made on the top of database. DB is like a platform whereas DW is usage.
+
+Data is copied not moved in DW. Data remains in the source file and it's copies are sent to the DW.
+
+Data Warehouse should be:
+1. Integrated
+2. Subject oriented
+3. Time variant
+4. Non Volatile
+Lastly, when we bring data to data warehouse we need to restructure and reorganize the data to make it more useful for analysis.
+
+Q. Why to build a DW?
+-> In order to support data driven decision making.
+-> One stop shopping: data we need in a single space rather than scattered space.
+
+
+Q. Difference between DW and Data Lake?
+Data Warehouse: Optimized for structured data, fast query performance, and business intelligence. Data is cleaned and transformed before storage.
+
+Data Lake: Stores raw, unprocessed data in its native format, suitable for a wide range of data types and big data analytics. Offers greater flexibility and scalability.
+
+
+Q. Difference between DW and Data Virtualization?
+->Data Warehouse:
+Storage: Centralized, physical storage.
+Data Handling: ETL process, structured data.
+Performance: Optimized for fast querying.
+Use Cases: Historical analysis, BI, reporting.
+
+->Data Virtualization:
+Storage: No physical storage; data remains in source systems.
+Data Handling: Real-time integration, virtual layer.
+Performance: Dependent on source systems; optimized with caching.
+Use Cases: Real-time data access, data federation, agile analytics.
+
+
+Data Sources -> Data Warehouse
+in between this journey we have ETL(Extract Transform Load)

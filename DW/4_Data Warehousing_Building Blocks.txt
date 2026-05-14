@@ -1,0 +1,35 @@
+Providing dimensional context:
+-> by: "Sliced and grouped" by values of the entire dimension
+-> for: one or more specific values from within the entire dimension
+
+In data warehousing:
+measurements = facts(Numeric and quantifiable)
+dimensional context = dimensions
+
+facts are just quantifiable unit.
+In RDBMS we store these facts in a fact table. 
+Fact != Fact Table
+ 
+Fact Table:
+In a data warehouse, a fact table is a table that stores the measurements, metrics, or facts related to a business operation. It is located at the center of a star or snowflake schema and is surrounded by dimension tables.
+
+Dimensional Table:
+A dimension table or dimension entity is a table or entity in a star, snowflake, or starflake schema that stores details about the facts. For example, a Time dimension table stores the various aspects of time such as year, quarter, month, and day.
+
+
+eg. Product category, product family, product
+In star schema: all dimensions in a single dimension table
+In snowflake schema: all dimensional with separate dimension table
+
+
+A DW fact can be:
+-> Additive: can be added under all circumstances
+-> Non-additive: margins, ratios, percentages, GPA
+-> Semi-additive
+
+Dimensional data = facts and dimensions, fact tables and dimension tables
+
+RDBMS key types:
+-> Primary vs foreign keys
+-> Natural vs Surrogate keys
+Natural keys travel from our source systems and are stored within dimension tables, but they should not be used for your primary keys

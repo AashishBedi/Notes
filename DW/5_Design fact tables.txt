@@ -1,0 +1,57 @@
+Four types of fact tables:
+1. Transaction: record facts from transactions
+2. Periodic Snapshot: track a given measurements at regular intervals
+3. Accumulate Snapshot: track the progress of a business process through formally defined stages
+4. Factless: i) record occurrence of a transaction that has no measurements
+ii) record coverage or eligibility relationships
+
+In DW the best practice is:
+primary key = surrogate key
+
+
+The process of establishing relationship between tables is called data modeling. Here we will do it in either star or snowflake schema.
+
+Rules of Governing Facts and Transaction Fact Tables:
+1. Facts available at same grain(level of detail)
+2. Facts occur simultaneously
+
+
+Q1. Design a transaction-grained fact table and the associated dimension tables to meet the following requirement:
+
+1) The university has many different locations around campus that serve meals to students using their meal cards
+
+2) We want to be able to analyze meal purchases by student, by date, and by location
+
+Q2. Design a periodic snapshot fact table and the associated dimension tables to meet the following requirement:
+
+1) An important part of a faculty member’s position is publishing papers in academic journals
+
+2) A faculty member will have, at any given point in time, some papers going through initial review; some papers going through final review; other papers that have been approved for publication but not published yet; and other papers that have been published
+
+3) The university administration office conducts analysis at the end of each calendar month about faculty publications…specifically, how many papers each faculty member has at various stages at each “snapshot point in time”
+
+Q3. Design a factless fact table and the associated dimension tables to meet the following requirement:
+
+1) The university annually holds a three-day orientation program for incoming freshmen
+
+2) Seniors are encouraged to participate in the orientation program, along with the university administration personnel
+
+3) Each senior can participate in part or all of the orientation program…e.g., all three days, or just the 1st day, or just the 2nd and 3rd days, etc.
+
+4) To help plan activities, each senior signs up in an online survey system for which day(s) he/she will be participating
+
+5) The online survey system sends this information into the university data warehouse, where it is stored for analysis in a factless fact table
+
+Q4. Design an accumulating snapshot fact table and the associated dimension tables to meet the following requirement:
+
+1) An important part of a faculty member’s position is pursuing grants from various sources
+
+2) For purposes of this exercise, assume that every grant goes through exactly the same process, regardless of source
+
+3) A faculty member applies for a grant, for a specific amount of money
+
+4) Each grant goes through an initial approval step; if approved, the amount of money might be reduced from the original request
+
+5) Each grant then goes through a final approval step; if approved, the amount of money might be reduced from the amount that entered the final approval step
+
+6) The grant money for an approved grant is eventually paid to the faculty member
